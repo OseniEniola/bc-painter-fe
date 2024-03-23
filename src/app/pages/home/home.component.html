@@ -1,0 +1,55 @@
+<div class="page-wrap">
+  <img class="bg_cloud" src="assets/img/pic/login_bg.svg" alt="bg_cloud">
+
+  <div class="content_wrap">
+    <div class="card login">
+      <div class="label-wrap">
+        <p class="bold">Welcome here</p>
+        <p class="light">Please enter your details to log in</p>
+      </div>
+
+      <div  class="form-wrap">
+        <form class="form-g" [formGroup]="loginForm">
+          <div class=" justify-content-between row">
+            <is-form-group label="Email" labelCls="case_label_cls" [required]="true">
+              <input
+                class="form-control title-input"
+                formControlName="email"
+                isAutofocus
+                placeholder="jon.doe@mail.com"
+                type="email"
+              />
+              <is-form-error [control]="loginForm.get('email')" label="Email"></is-form-error>
+            </is-form-group>
+            <is-form-group label="Password" labelCls="case_label_cls" [required]="true">
+              <div class="select-wrap">
+                <input
+                  class="form-control title-input"
+                  formControlName="password"
+                  placeholder="*******"
+                  type="password"
+                  id="password"
+                />
+                <i *ngIf="isPassVisible" (click)="togglePasswordVisibility('password'); isPassVisible=!isPassVisible" class="bi bi-eye-slash"></i>
+                <i *ngIf="!isPassVisible" (click)="togglePasswordVisibility('password');isPassVisible=!isPassVisible" class="bi bi-eye"></i>
+              </div>
+
+              <is-form-error [control]="loginForm.get('password')" label="Password"></is-form-error>
+            </is-form-group>
+            <div class="pass-conf">
+              <div class="keep-login">
+                <input type="checkbox" name="keep-login" id="keep-login">
+                <label for="keep-login">Keep me logged in on this device</label>
+              </div>
+            </div>
+          </div>
+          <button  (click)="loginUser()" class="submit">Log In
+            <span *ngIf="isLoading" class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+          </button>
+          <div class="alt_signin">Don’t have an account,<a [routerLink]="'/corporate/register'"> Sign Up</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>

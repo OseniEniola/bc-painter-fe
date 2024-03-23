@@ -1,0 +1,100 @@
+@import "../../../../assets/styles/mixins";
+@import "../../../../assets/styles/table";
+
+
+.title {
+  font-weight: 700;
+  color: black;
+
+  &.xl {
+    font-size: 1.7rem;
+    font-family: 'Gilroy-Bold';
+    letter-spacing: 0.03rem;
+    color: var(--text-dark);
+  }
+}
+.section {
+
+  &.stats {
+
+    .stats-wrap {
+      display: flex;
+      justify-content: flex-start;
+      flex-wrap: wrap;
+      gap: 1rem;
+
+      .card {
+        background: #fafbff;
+        border: 1px solid #d8e0fd;
+        border-radius: 20px;
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 12px;
+        flex-direction: inherit;
+        width: 23%;
+        @media (min-width: 320px) and (max-width: 820px) {
+          width: 100%;
+          margin: 0.22rem;
+          margin-bottom: 1rem;
+        }
+        .card-info {
+          font-family: "Roboto";
+
+          .green-stat {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 0.6rem;
+            color: #01c38e;
+            text-transform: uppercase;
+          }
+          .amber-stat{
+            font-style: normal;
+            font-weight: 500;
+            font-size: 0.6rem;
+            color: #FF7E00;
+            text-transform: uppercase;
+          }
+          .red-stat {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 0.6rem;
+            color: #ee4266;
+            text-transform: uppercase;
+          }
+          .count {
+            font-family: "Roboto";
+            font-style: normal;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #342e37;
+
+            &.black{
+             color: #000000;
+            }
+            &.grey{
+              color: grey;
+            }
+            &.blue{
+              color: #0000ff;
+            }
+            &.cream{
+              color: #ffaa00;
+            }
+            &.purple{
+              color: #800080FF;
+            }
+          }
+        }
+        img {
+          width: 20%;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+
+//Responsive Breakpoints
+$xs: 375px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+
+//Color systems
+
+:root {
+  --light-gray: #969696;
+  --primary: #2C90FF;
+  --sec-orange: #ff6b00;
+  --text-dark: #383F40;
+  --white: #ffffff;
+  //Border
+  --border-2: #B1D6FF;
+
+
+  //Background colors
+  --bkg-4: #F9FDFF;
+  --bkg-8: #F3F3F3;
+  --primary-light: #DCEDFF;
+
+  --approved: #36ab68;
+  --pending: #e5a647;
+  --decline: #eb5757;
+
+
+}

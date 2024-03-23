@@ -1,0 +1,125 @@
+.section {
+  &.table {
+
+    .table-container {
+      overflow: hidden;
+      border-radius: 0.3rem;
+      box-shadow: 0 16px 43px rgba(0,0,0,.06);
+
+      .table-hdr {
+        display: flex;
+        padding: 0.4rem 0.5rem;
+        background-color: white;
+        justify-content: space-between;
+
+        .title {
+          font-size: 1rem;
+          color: rgba(0,0,0,0.5);
+        }
+      }
+
+      table {
+
+        thead {
+          border: none;
+          padding: 0.3rem 1rem !important;
+          background-color: rgba(0,0,0,.06);
+
+          tr {
+
+            th {
+              border: none;
+              font-size: 0.75rem;
+              font-weight: 600;
+              letter-spacing: 0.02rem;
+              padding: 0.6rem 1rem;
+            }
+          }
+        }
+
+        tbody {
+          border: none;
+          padding: 0.3rem 0.7rem !important;
+
+          tr {
+            line-height: 1;
+            border-bottom: 1px solid rgba(0,0,0,.06);
+
+            td {
+              padding: 0.6rem 1rem;
+              border: none;
+
+              &:first-child {
+                text-transform: capitalize;
+              }
+
+              span {
+                width: 100%;
+                height: auto;
+                margin: 0;
+                display: inline-flex;
+                font-size: 0.75rem;
+                letter-spacing: 0.01rem;
+                line-height: 1;
+
+                &.major {
+                  font-weight: 600;
+                }
+
+                &.minor {
+                  font-size: 0.7rem;
+                  color: rgba(0,0,0,.4);
+                }
+
+                &.pending {
+                  width: auto;
+                  padding: 0.3rem 1rem;
+                  display: inline-flex;
+                  border-radius: 0.3rem;
+                  cursor: pointer;
+                  border: 1px solid rgba(var(--pending), 0.4);
+                  background-color: rgba(var(--pending), 0.1);
+                  color: var(--pending);
+                }
+
+                &.approved {
+                  width: auto;
+                  padding: 0.3rem 1rem;
+                  display: inline-flex;
+                  border-radius: 0.3rem;
+                  cursor: pointer;
+                  border: 1px solid rgba(var(--approved), 0.4);
+                  background-color: rgba(var(--approved), 0.1);
+                  color: var(--approved);
+                }
+
+                &.declined {
+                  width: auto;
+                  padding: 0.3rem 1rem;
+                  display: inline-flex;
+                  border-radius: 0.3rem;
+                  cursor: pointer;
+                  border: 1px solid rgba(var(--decline), 0.4);
+                  background-color: rgba(var(--decline), 0.1);
+                  color: var(--decline);
+                }
+
+                &.policy {
+                  width: auto;
+                  padding: 0.3rem 1rem;
+                  display: inline-flex;
+                  border-radius: 0.3rem;
+                  cursor: pointer;
+                  border: 1px solid rgba(var(--primary), 0.4);
+                  background-color: rgba(var(--primary), 0.1);
+                  color: var(--primary);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+

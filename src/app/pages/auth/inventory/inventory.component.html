@@ -1,0 +1,78 @@
+<app-page-layout>
+
+  <div class="comp-container">
+    <div class="title xl">Inventory Management</div>
+
+    <div class="section table">
+      <div class="table-container mt-lg-4">
+        <div class="table-hdr">
+          <div class="title">Available Paints</div>
+        </div>
+        <table class="table align-middle mb-0 bg-white">
+          <thead class="bg-light">
+          <tr>
+            <ng-container *ngFor = 'let col of tableColumns'>
+              <th [ngStyle]="{'width': col.colWidth}">{{col.label}}</th>
+            </ng-container>
+          </tr>
+          </thead>
+
+          <tbody>
+          <ng-container *ngFor="let record of paints; let i = index">
+            <tr>
+              <td>
+                <span class="major">#12323223</span>
+              </td>
+              <td>
+                <span class="minor">Blue</span>
+              </td>
+              <td>
+                <span>2</span>
+              </td>
+              <td>
+                <span (click)="openModal(paintModal)" class="w-auto" style="cursor: pointer; font-size: 0.9rem;"><i class="bi bi-pen"></i></span>
+              </td>
+            </tr>
+          </ng-container>
+
+          </tbody>
+        </table>
+
+        <div class="d-flex justify-content-center align-items-center py-4" *ngIf="isFetchingRecords && paints.length < 1">
+          <span class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status"></span>
+        </div>
+        <div *ngIf="!isFetchingRecords && paints.length == 0" class="empty-state">No records were found</div>
+      </div>
+    </div>
+  </div>
+
+</app-page-layout>
+
+
+<ng-template #paintModal>
+  <div class="action-modal">
+    <div class="hdr">
+      <div class="title">Edit Inventory <span *ngIf="dataLoading" class="ps-1"> <span class="spinner-border text-primary" style="width: 1rem; height: 1rem;" role="status"></span> </span></div>
+      <div class="close-btn" (click)="closeModal(paintModal)"></div>
+    </div>
+
+    <div class="form-wrap">
+      <form [formGroup]="paintEditForm">
+        <div class="input-hld">
+          <label class="form-label">Order ID #</label>
+          <input readonly type="text" class="form-control" formControlName="orderId" placeholder="129382">
+        </div>
+        <div class="input-hld">
+          <label class="form-label">Color</label>
+          <input type="number" class="form-control" formControlName="color" placeholder="0">
+        </div>
+        <div class="input-hld">
+          <label class="form-label">Quantity</label>
+          <input type="number" class="form-control lower" formControlName="quantity" placeholder="0">
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</ng-template>

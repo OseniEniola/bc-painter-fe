@@ -1,0 +1,75 @@
+<div class="admin-page-wrap">
+  <div class="header">
+    <header>
+      <div class="inner-wrap">
+        <div class="logo-wrap">
+
+          <div class="logo">
+            <p class="main">BC Painters</p>
+            <p class="sub">Hub</p>
+          </div>
+        </div>
+        <div class="other-info">
+          <div class="user-details">
+            <div class="user" (click)="activeMenu = ''" [routerLink]="''">
+              <div class="image" style="background-image: url('https://onburdstorageaccount.blob.core.windows.net/onburd/public/onburd_fe/assets/onburd-corporate/images/user_profile_icon.svg');"></div>
+              <div class="name">{{userInfo}}</div>
+              <div class="arrow"><i class="bi bi-chevron-down"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </div>
+
+  <div class="main-page">
+    <div class="menu">
+      <nav>
+        <ul>
+          <li class="nav-item" [ngClass]="{'active':activeMenu=='dashboard'}" (click)="activeMenu = 'dashboard'" [routerLink]="'/app/dashboard'">
+            <i class="bi bi-bookmark-fill"></i>
+            <span>Dashboard</span>
+          </li>
+          <li class="nav-item" [ngClass]="{'active':activeMenu=='orders'}" (click)="activeMenu = 'orders'" [routerLink]="'/app/orders'">
+            <i class="bi bi-cart-check-fill"></i>
+            <span>Orders Assignment</span>
+          </li>
+          <li class="nav-item" [ngClass]="{'active':activeMenu=='inventory'}" (click)="activeMenu = 'inventory'" [routerLink]="'/app/inventory'">
+            <i class="bi bi-clipboard-check-fill"></i>
+            <span>Inventory</span>
+          </li>
+          <li [ngClass]="{'active':activeMenu=='user-management'}" (click)="activeMenu = 'user-management'" class="nav-item" [routerLink]="'/app/user-management'">
+            <i class="bi bi-person-fill-gear"></i>
+            <span>User Management</span>
+          </li>
+        </ul>
+
+        <ul class="mini">
+          <li class="nav-item" [ngClass]="{'active':activeMenu=='profile'}" (click)="activeMenu = 'profile'">
+            <i class="bi bi-sliders"></i>
+            <span>Company Profile</span>
+          </li>
+          <li class="nav-item">
+            <i class="bi bi-chat"></i>
+            <span>Support FAQs</span>
+          </li>
+          <li (click)="logOutConfirm = !logOutConfirm" class="nav-item">
+            <i class="bi bi-box-arrow-left"></i>
+            <span>Logout</span>
+          </li>
+
+          <div *ngIf="logOutConfirm" class="log-out">
+            <div class="text">You're logged in</div>
+            <div [routerLink]="'/home'" class="text">Logout</div>
+          </div>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="page-content">
+      <div class="inner-wrap">
+        <ng-content></ng-content>
+      </div>
+    </div>
+  </div>
+</div>
