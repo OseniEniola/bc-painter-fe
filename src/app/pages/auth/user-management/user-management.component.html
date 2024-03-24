@@ -1,10 +1,13 @@
 <app-page-layout>
+  <div *ngIf="isLoading" class="loader-wrap">
+    <div class="loader spinner-border text-light" role="status"></div>
+  </div>
 
   <div class="comp-container">
     <div class="title xl">User Management</div>
 
 
-    <button class="create" (click)="openModal(userModal,'addUser')">Create new user <i class="bi bi-plus-circle"></i></button>
+    <button class="create" (click)="createNewUser(userModal)">Create new user <i class="bi bi-plus-circle"></i></button>
 
     <div class="section table">
       <div class="table-container mt-lg-4">
@@ -24,23 +27,22 @@
           <ng-container *ngFor="let record of users; let i = index">
             <tr>
               <td>
-                <span class="major">#12323223</span>
+                <span class="major">#{{record.id}}</span>
               </td>
               <td>
-                <span class="major">Dami</span>
+                <span class="major">{{record.first_name}}</span>
               </td>
               <td>
-                <span>Oseni</span>
+                <span>{{record.last_name}}</span>
               </td>
               <td>
-                <span>XXX-XXX-XXXX</span>
+                <span>{{record.phone}}</span>
               </td>
               <td>
-                <span>Manager</span>
+                <span>{{record.role}}</span>
               </td>
               <td>
-                <span (click)="openModal(userModal,'editUser')" class="w-auto" style="cursor: pointer; font-size: 0.9rem;"><i class="bi bi-pen"></i></span>
-
+                <span (click)="editUser(userModal,record)" class="w-auto" style="cursor: pointer; font-size: 0.9rem;"><i class="bi bi-pen"></i></span>
               </td>
             </tr>
           </ng-container>
@@ -70,7 +72,7 @@
       <form [formGroup]="employeeForm">
         <div *ngIf="!newEmployee" class="input-hld">
           <label class="form-label">Emplpoyee ID #</label>
-          <input readonly type="text" class="form-control" formControlName="orderId" placeholder="129382">
+          <input readonly type="text" class="form-control" formControlName="employeeId" placeholder="129382">
         </div>
         <div class="input-hld">
           <label class="form-label">First Name</label>
@@ -78,11 +80,21 @@
         </div>
         <div class="input-hld">
           <label class="form-label">Last Name</label>
-          <input type="text" class="form-control lower" formControlName="lastName" placeholder="Last Name">
+          <input type="text" class="form-control" formControlName="lastName" placeholder="Last Name">
+        </div>
+        <div class="input-hld">
+          <label class="form-label">Email</label>
+          <input type="text" class="form-control lower" formControlName="email" placeholder="Email">
         </div>
         <div class="input-hld">
           <label class="form-label">Phone</label>
-          <input type="number" class="form-control" formControlName="phone" placeholder="Phone No">
+          <input type="text" class="form-control" formControlName="phone" placeholder="Phone No">
+        </div>
+        <div *ngIf="newEmployee" class="input-hld password">
+          <label class="form-label">Password</label>
+          <input id="password" type="password" class="form-control" formControlName="password" placeholder="*********">
+          <i *ngIf="isPassVisible" (click)="togglePasswordVisibility('password'); isPassVisible=!isPassVisible" class=" bi bi-eye-slash"></i>
+          <i *ngIf="!isPassVisible" (click)="togglePasswordVisibility('password');isPassVisible=!isPassVisible" class=" bi bi-eye"></i>
         </div>
         <div class="input-hld req">
           <div class="dropdown" dropdown>
@@ -101,6 +113,8 @@
       </form>
 
     </div>
-
+    <div class="actions">
+      <div (click)="newEmployee ? createUser() : updateInfo()"  class="btn full primary">{{newEmployee ? 'Create' : 'Update' }} user</div>
+    </div>
   </div>
 </ng-template>

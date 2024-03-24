@@ -1,98 +1,131 @@
 <app-page-layout>
-
+  <div *ngIf="isLoading" class="loader-wrap">
+    <div class="loader spinner-border text-light" role="status"></div>
+  </div>
   <div class="comp-container">
     <div class="title xl">Dashboard</div>
+    <div *ngIf="!isLoading">
+      <div class="section stats mt-lg-3 mt-1">
+        <div class="stats-wrap">
+          <div *ngFor="let color of inventories"  class="card">
+            <div class="card-info">
+              <div [ngClass]="color.color.toLowerCase()" class="count">{{color.color}}: {{color.quantity}}</div>
+              <div [ngClass]="color.quantity > 15 ? 'green-stat' : (color.quantity >= 1) ? 'amber-stat' :'red-stat'" class="green-stat">
+                {{color.quantity > 15 ? 'Available' : (color.quantity >= 1 ) ? 'Running Low' :'Out of stock'}}
+              </div>
+            </div>
+            <img *ngIf="color.quantity > 15" src="./assets/img/icons/available.png" alt="Available" />
+            <img *ngIf="color.quantity >= 1 && color.quantity <= 15" src="./assets/img/icons/running-low.png" alt="Running Low" />
+            <img *ngIf="color.quantity < 1" src="./assets/img/icons/out-of-stock.png" alt="Out of Stock" />
 
-    <div class="section stats mt-lg-3 mt-1">
-      <div class="stats-wrap">
-        <div class="card">
-          <div class="card-info">
-            <div class="count blue">Blue Paint: 30</div>
-            <div class="green-stat">Available</div>
           </div>
-          <img src="./assets/img/icons/available.png" alt="like" />
-        </div>
-
-        <div class="card">
-          <div class="card-info">
-            <div class="count grey">Grey Paint: 0</div>
-            <div class="red-stat">Out of Stock </div>
-          </div>
-          <img src="./assets/img/icons/out-of-stock.png" alt="like" />
-        </div>
-
-        <div class="card">
-          <div class="card-info">
-            <div class="count black">Black Paint: 10</div>
-            <div class="amber-stat">Running Low </div>
-          </div>
-          <img src="./assets/img/icons/running-low.png" alt="like" />
-        </div>
-        <div class="card">
-          <div class="card-info">
-            <div class="count cream">White Paint: 0</div>
-            <div class="red-stat">Out of stock </div>
-          </div>
-          <img src="./assets/img/icons/out-of-stock.png" alt="like" />
-        </div>
-        <div class="card">
-          <div class="card-info">
-            <div class="count purple">Purple Paint: 10</div>
-            <div class="amber-stat">Running Low </div>
-          </div>
-          <img src="./assets/img/icons/running-low.png" alt="like" />
         </div>
       </div>
-    </div>
 
-    <div class="section table">
-      <div class="table-container mt-lg-4">
-        <div class="table-hdr">
-          <div class="title">Order History</div>
-        </div>
-        <table class="table align-middle mb-0 bg-white">
-          <thead class="bg-light">
-          <tr>
-            <ng-container *ngFor = 'let col of tableColumns'>
-              <th [ngStyle]="{'width': col.colWidth}">{{col.label}}</th>
-            </ng-container>
-          </tr>
-          </thead>
-
-          <tbody>
-          <ng-container *ngFor="let record of paintOrder; let i = index">
+      <div  class="section table">
+        <div class="table-container mt-lg-4">
+          <div class="table-hdr">
+            <div class="title">Order History</div>
+          </div>
+          <table class="table align-middle mb-0 bg-white">
+            <thead class="bg-light">
             <tr>
-              <td>
-                <span class="major">#12323223</span>
-              </td>
-              <td>
-                <span class="major">823 Ewen Avenue</span>
-                <span class="minor">V3M 5C7</span>
-              </td>
-              <td>
-                <span>{{availablePaintList[i]}}</span>
-              </td>
-              <td>
-                <span>2</span>
-              </td>
-              <td>
-                <span  *ngIf="record?.status =='PROCESSING'" class="pending">In Process</span>
-                <span  *ngIf="record?.status =='COMPLETED'" class="approved">Completed</span>
-              </td>
+              <ng-container *ngFor = 'let col of tableColumns'>
+                <th [ngStyle]="{'width': col.colWidth}">{{col.label}}</th>
+              </ng-container>
             </tr>
-          </ng-container>
+            </thead>
 
-          </tbody>
-        </table>
+            <tbody>
+            <ng-container *ngFor="let record of paintOrder; let i = index">
+              <tr>
+                <td>
+                  <span class="major">#{{record.id}}</span>
+                </td>
+                <td>
+                  <span class="major">{{record.address}}</span>
+                 <!-- <span class="minor">V3M 5C7</span>-->
+                </td>
+                <td>
+                  <span>{{record.color}}</span>
+                </td>
+                <td>
+                  <span>{{record.paint_used}}</span>
+                </td>
+                <td>
+                  <span  *ngIf="record?.order_status =='PROCESSING'" class="pending">{{record.order_status}}</span>
+                  <span  *ngIf="record?.order_status =='COMPLETED'" class="approved">{{record.order_status}}</span>
+                </td>
+                <td>
+                  <span (click)="openModal(order,record)" class="w-auto" style="cursor: pointer; font-size: 0.9rem;"><i class="bi bi-pen"></i></span>
+                </td>
+              </tr>
+            </ng-container>
 
-        <div class="d-flex justify-content-center align-items-center py-4" *ngIf="isFetchingRecords && paintOrder.length < 1">
-          <span class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status"></span>
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-center align-items-center py-4" *ngIf="isFetchingRecords && paintOrder.length < 1">
+            <span class="spinner-border text-primary" style="width: 1.5rem; height: 1.5rem;" role="status"></span>
+          </div>
+          <div *ngIf="!isFetchingRecords && paintOrder.length == 0" class="empty-state">No records were found</div>
         </div>
-        <div *ngIf="!isFetchingRecords && paintOrder.length == 0" class="empty-state">No records were found</div>
       </div>
     </div>
+
   </div>
 
 
 
 </app-page-layout>
+
+<ng-template #order>
+  <div class="action-modal">
+    <div class="hdr">
+      <div class="title">Update Order <span *ngIf="dataLoading" class="ps-1"> <span class="spinner-border text-primary" style="width: 1rem; height: 1rem;" role="status"></span> </span></div>
+      <div class="close-btn" (click)="closeModal(order)"></div>
+    </div>
+
+    <div class="form-wrap">
+      <form [formGroup]="orderForm">
+        <div  class="input-hld">
+          <label class="form-label">Order ID #</label>
+          <input readonly type="text" class="form-control" formControlName="orderId" placeholder="129382">
+        </div>
+        <div  class="input-hld">
+          <label class="form-label">House Address</label>
+          <input  [readonly]="true" [disabled]="true" type="text" class="form-control" formControlName="houseAddress" placeholder="House Address">
+        </div>
+        <div class="input-hld req">
+          <div class="dropdown" dropdown>
+            <label  class="form-label req">Paint Color</label>
+            <input type="text" [readonly]="true" [disabled]="true" formControlName="paintColor" dropdownToggle class="form-control arrDown dropdownToggle dropdownTrigger" data-bs-toggle="dropdown" placeholder="Select paint color" required>
+            <span class="selectArrow"><i class="bi bi-chevron-down"></i></span>
+          </div>
+        </div>
+        <div  class="input-hld">
+          <label class="form-label">No of paint used</label>
+          <input  type="number" class="form-control" formControlName="noPaintUsed" placeholder="No of paint used">
+        </div>
+        <div class="input-hld req">
+          <div class="dropdown" dropdown>
+            <label  class="form-label req">Order Status</label>
+            <input type="text" readonly formControlName="status" dropdownToggle class=" clear form-control arrDown dropdownToggle dropdownTrigger" data-bs-toggle="dropdown" placeholder="Select Order status" required>
+            <span class="selectArrow"><i class="bi bi-chevron-down"></i></span>
+            <div *dropdownMenu class="dropdown-menu w-100">
+              <div class="option-wrap">
+                <div *ngFor="let option of orderStatusList" class="option">
+                  <span [ngClass]="{'active':orderForm.value.status == 'option'}" (click)="setValue('status', option)">{{option}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+    <div class="actions">
+      <div (click)="completeOrder()"  class="btn full primary">Complete Order</div>
+    </div>
+  </div>
+</ng-template>

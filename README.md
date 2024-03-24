@@ -25,3 +25,17 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+# BC Painters Hub Admin Page Component
+
+The BC Painters Hub Admin Page Component provides a structured layout for the admin pages of the BC Painters Hub application. It consists of three main sections: Header, Menu, and Page Content.
+
+## Menu Section
+
+The menu section provides navigation links to different sections of the application.
+
+- **Dashboard**: Link to the dashboard page
+- **Orders Assignment**: Link to the orders assignment page (Visible to Admin role)
+- **Inventory**: Link to the inventory page (Visible to Manager role)
+- **User Management**: Link to the user management page (Visible to SYS_ADMIN role)
+- **Logout**: Button to log out of the application

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from "../../../models/user-data.dto";
+import {UtilitesService} from "../../../services/utilites.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-page-layout',
@@ -11,9 +14,17 @@ export class PageLayoutComponent implements OnInit {
   userInfo: string;
   logOutConfirm: boolean = false;
 
-  constructor() { }
+  loggedinUser: User | null
+  constructor(private utilities: UtilitesService,private router: Router) {
+    this.loggedinUser = utilities.getLoggedInUserData()
+  }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    localStorage.removeItem('user_date')
+    this.router.navigateByUrl("/")
   }
 
 }

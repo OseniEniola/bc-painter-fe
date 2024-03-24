@@ -1,6 +1,9 @@
 @import "../../../../assets/styles/mixins";
 @import "../../../../assets/styles/table";
 
+@import "../../../../assets/styles/modals";
+
+
 
 .title {
   font-weight: 700;
@@ -45,6 +48,7 @@
         border-radius: 20px;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 16px 12px;
         flex-direction: inherit;
         width: 23%;
@@ -58,23 +62,35 @@
 
           .green-stat {
             font-style: normal;
+            width: fit-content;
+            padding: 0.3rem;
+            border-radius: 3px;
             font-weight: 500;
             font-size: 0.6rem;
             color: #01c38e;
+            background-color: rgba(#01c38e,0.41);
             text-transform: uppercase;
           }
           .amber-stat{
             font-style: normal;
+            width: fit-content;
+            padding: 0.3rem;
+            border-radius: 3px;
             font-weight: 500;
             font-size: 0.6rem;
             color: #FF7E00;
+            background-color: rgba(#FF7E00,0.41);
             text-transform: uppercase;
           }
           .red-stat {
             font-style: normal;
+            width: fit-content;
+            padding: 0.3rem;
+            border-radius: 3px;
             font-weight: 500;
             font-size: 0.6rem;
             color: #ee4266;
+            background-color: rgba(#ee4266,0.41);
             text-transform: uppercase;
           }
           .count {
@@ -93,7 +109,7 @@
             &.blue{
               color: #0000ff;
             }
-            &.cream{
+            &.white{
               color: #ffaa00;
             }
             &.purple{
@@ -105,275 +121,6 @@
           width: 20%;
         }
       }
-    }
-  }
-}
-
-
-::ng-deep .modal-content {
-  width: 100% !important;
-  left: 50%;
-  transform: translate(-50%, 40%);
-}
-
-.action-modal {
-  width: 100%;
-  height: 100%;
-  border: none;
-  //overflow: hidden;
-  border-radius: 0.8rem;
-  background-color: white;
-  position: relative;
-
-  .hdr  {
-    display: flex;
-    padding: 0.8rem 5%;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--bkg-8);
-
-    .title {
-      //color: $primary;
-    }
-
-    .close-btn {
-      width: 18px;
-      height: 18px;
-      border-radius: 4px;
-      position: relative;
-      background-color: black;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &::before,
-      &::after {
-        content: '';
-        width: 2px;
-        height: 10px;
-        position: absolute;
-        background-color: #ffffff;
-        border-radius: 4px;
-        left: 43%;
-        top: 3.5px;
-      }
-
-      &::before {
-        transform: rotate(45deg);
-      }
-      &::after {
-        transform: rotate(-45deg);
-      }
-    }
-  }
-
-  .form-wrap {
-
-    form {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 1rem 5%;
-      justify-content: space-between;
-
-      .input-hld {
-        width: 48%;
-        margin-bottom: 1rem;
-
-        &.full {
-          width: 100%;
-        }
-      }
-    }
-  }
-
-  .content {
-    padding: 1rem 5%;
-
-    .text {
-      font-size: 0.85rem;
-      letter-spacing: 0.02rem;
-      color: rgba(#000, 0.6);
-
-      a {
-        color: var(--primary);
-      }
-    }
-  }
-
-  .actions {
-
-    .file-upload {
-      display: none;
-    }
-
-    .upload-btn {
-      cursor: pointer;
-
-      .icon {
-        font-size: 0.8rem;
-        color: var(--primary);
-
-        span {
-          width: 1rem;
-          height: 1rem;
-          line-height: 1;
-          border-radius: 50%;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background-color: var(--primary);
-          margin-right: 0.3rem;
-          padding-bottom: 0.1rem;
-          color: #fff;
-          font-size: 0.8rem;
-        }
-      }
-
-      .file-name {
-        font-size: 0.75rem;
-        color: rgba(#000, 0.45);
-      }
-    }
-  }
-
-
-  label {
-    font-size: 0.8rem;
-    letter-spacing: 0.02rem;
-    margin-bottom: 0.3rem;
-    position: relative;
-
-    &.req {
-
-      &:after {
-        content: '*';
-        color: red;
-        position: absolute;
-        right: -0.5rem;
-        top: 0;
-      }
-    }
-
-  }
-
-  input, textarea {
-    font-size: 0.75rem;
-    padding: 0.4rem 1rem;
-    border-radius: 4px;
-    text-transform: capitalize;
-
-    &.lower {
-      text-transform: lowercase;
-    }
-    &[readonly].clear{
-      background-color: var(--white);
-    }
-
-    &::placeholder {
-      font-size: 0.8rem;
-      letter-spacing: 0.01rem;
-      text-transform: capitalize;
-
-      @include screen-media-max($sm) {
-        font-size: 0.7rem;
-      }
-    }
-  }
-
-  .dropdown {
-    position: relative;
-
-    .selectArrow {
-      right: 4%;
-      top: 2.1rem;
-      font-size: 0.75rem;
-      position: absolute;
-    }
-  }
-
-  .arrDown {
-    cursor: pointer;
-    background-size: 0.8rem;
-    position: relative;
-    background-position: 95% center;
-    background-repeat: no-repeat;
-  }
-
-  .noSelection {
-    margin-top: 0.4rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 0;
-    color: rgba(0, 0, 0, 0.4);
-  }
-
-  .dropdown-menu {
-    height: auto;
-    max-height: 11rem;
-    overflow: auto;
-    .option-wrap {
-      padding: 0;
-
-      .option {
-        padding: 0.3rem 1rem;
-        cursor: pointer;
-        transition: all 0.4s ease;
-
-        &.lower {
-
-          span {
-            text-transform: lowercase;
-          }
-        }
-
-        &:hover, &.active {
-          background-color: var(--primary-light);
-        }
-
-        span {
-          width: 100%;
-          display: inline-block;
-          margin-bottom: 0;
-          font-size: 0.75rem;
-          text-transform: capitalize;
-
-          &.active {
-            background-color: var(--primary-light);
-          }
-        }
-      }
-    }
-  }
-
-
-  .actions {
-    padding: 0 5%;
-    margin: 0 0 1.5rem;
-  }
-
-
-  .btn-hld {
-    width: 100%;
-
-    .duo {
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-      padding-top: 1rem;
-      margin-top: 1rem;
-    }
-
-    button {
-      width: 100%;
-      font-size: 0.85rem;
-      border-radius: 4px;
-      background-color: var(--primary);;
-      text-align: center;
-      letter-spacing: 0.03rem;
-      padding: 0.8rem 0;
-      border: none;
-      outline: none;
-      color: var(--white);
-      @include b-shadow-blue;
     }
   }
 }

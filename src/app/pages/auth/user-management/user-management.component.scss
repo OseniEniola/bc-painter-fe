@@ -1,1 +1,12 @@
 @import "../orders/orders.component";
+
+.input-hld.password{
+  position: relative;
+  i{
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    cursor: pointer;
+  }
+}
+

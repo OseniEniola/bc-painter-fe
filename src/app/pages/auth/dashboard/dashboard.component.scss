@@ -1,5 +1,6 @@
 @import "../../../../assets/styles/mixins";
 @import "../../../../assets/styles/table";
+@import "../../../../assets/styles/modals";
 
 
 .title {
@@ -29,6 +30,7 @@
         border-radius: 20px;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 16px 12px;
         flex-direction: inherit;
         width: 23%;
@@ -42,23 +44,35 @@
 
           .green-stat {
             font-style: normal;
+            width: fit-content;
+            padding: 0.3rem;
+            border-radius: 3px;
             font-weight: 500;
             font-size: 0.6rem;
             color: #01c38e;
+            background-color: rgba(#01c38e,0.41);
             text-transform: uppercase;
           }
           .amber-stat{
             font-style: normal;
+            width: fit-content;
+            padding: 0.3rem;
+            border-radius: 3px;
             font-weight: 500;
             font-size: 0.6rem;
             color: #FF7E00;
+            background-color: rgba(#FF7E00,0.41);
             text-transform: uppercase;
           }
           .red-stat {
             font-style: normal;
+            width: fit-content;
+            padding: 0.3rem;
+            border-radius: 3px;
             font-weight: 500;
             font-size: 0.6rem;
             color: #ee4266;
+            background-color: rgba(#ee4266,0.41);
             text-transform: uppercase;
           }
           .count {
@@ -77,7 +91,7 @@
             &.blue{
               color: #0000ff;
             }
-            &.cream{
+            &.white{
               color: #ffaa00;
             }
             &.purple{

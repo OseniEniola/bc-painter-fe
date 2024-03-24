@@ -30,15 +30,15 @@
             <i class="bi bi-bookmark-fill"></i>
             <span>Dashboard</span>
           </li>
-          <li class="nav-item" [ngClass]="{'active':activeMenu=='orders'}" (click)="activeMenu = 'orders'" [routerLink]="'/app/orders'">
+          <li *ngIf="loggedinUser?.role == 'ADMIN'" class="nav-item" [ngClass]="{'active':activeMenu=='orders'}" (click)="activeMenu = 'orders'" [routerLink]="'/app/orders'">
             <i class="bi bi-cart-check-fill"></i>
             <span>Orders Assignment</span>
           </li>
-          <li class="nav-item" [ngClass]="{'active':activeMenu=='inventory'}" (click)="activeMenu = 'inventory'" [routerLink]="'/app/inventory'">
+          <li *ngIf="loggedinUser?.role == 'MANAGER'" class="nav-item" [ngClass]="{'active':activeMenu=='inventory'}" (click)="activeMenu = 'inventory'" [routerLink]="'/app/inventory'">
             <i class="bi bi-clipboard-check-fill"></i>
             <span>Inventory</span>
           </li>
-          <li [ngClass]="{'active':activeMenu=='user-management'}" (click)="activeMenu = 'user-management'" class="nav-item" [routerLink]="'/app/user-management'">
+          <li *ngIf="loggedinUser?.role == 'SYS_ADMIN'" [ngClass]="{'active':activeMenu=='user-management'}" (click)="activeMenu = 'user-management'" class="nav-item" [routerLink]="'/app/user-management'">
             <i class="bi bi-person-fill-gear"></i>
             <span>User Management</span>
           </li>
@@ -60,7 +60,7 @@
 
           <div *ngIf="logOutConfirm" class="log-out">
             <div class="text">You're logged in</div>
-            <div [routerLink]="'/home'" class="text">Logout</div>
+            <div (click)="logout()" class="text">Logout</div>
           </div>
         </ul>
       </nav>

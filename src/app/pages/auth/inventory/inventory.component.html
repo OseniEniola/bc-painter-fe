@@ -1,4 +1,7 @@
 <app-page-layout>
+  <div *ngIf="isLoading" class="loader-wrap">
+    <div class="loader spinner-border text-light" role="status"></div>
+  </div>
 
   <div class="comp-container">
     <div class="title xl">Inventory Management</div>
@@ -21,16 +24,16 @@
           <ng-container *ngFor="let record of paints; let i = index">
             <tr>
               <td>
-                <span class="major">#12323223</span>
+                <span class="major">#{{record.id}}</span>
               </td>
               <td>
-                <span class="minor">Blue</span>
+                <span class="minor">{{record.color}}</span>
               </td>
               <td>
-                <span>2</span>
+                <span>{{record.quantity}}</span>
               </td>
               <td>
-                <span (click)="openModal(paintModal)" class="w-auto" style="cursor: pointer; font-size: 0.9rem;"><i class="bi bi-pen"></i></span>
+                <span (click)="editPaint(paintModal,record);" class="w-auto" style="cursor: pointer; font-size: 0.9rem;"><i class="bi bi-pen"></i></span>
               </td>
             </tr>
           </ng-container>
@@ -59,12 +62,12 @@
     <div class="form-wrap">
       <form [formGroup]="paintEditForm">
         <div class="input-hld">
-          <label class="form-label">Order ID #</label>
-          <input readonly type="text" class="form-control" formControlName="orderId" placeholder="129382">
+          <label class="form-label">Record ID #</label>
+          <input readonly type="text" class="form-control" formControlName="color_id" placeholder="129382">
         </div>
         <div class="input-hld">
           <label class="form-label">Color</label>
-          <input type="number" class="form-control" formControlName="color" placeholder="0">
+          <input type="text" class="form-control" formControlName="color" placeholder="Color">
         </div>
         <div class="input-hld">
           <label class="form-label">Quantity</label>
@@ -73,6 +76,8 @@
       </form>
 
     </div>
-
+    <div class="actions">
+      <div (click)="updateRecord()"  class="btn full primary">Update Record</div>
+    </div>
   </div>
 </ng-template>
