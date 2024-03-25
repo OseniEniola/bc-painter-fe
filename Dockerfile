@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install Angular CLI globally
-RUN npm install -g @angular/cli
+RUN npm install -g @angular/cli@~12.2.18
 
 # Install dependencies
 RUN npm install
@@ -21,4 +21,7 @@ RUN ng build --prod
 
 # Use Nginx to serve the Angular app
 FROM nginx:alpine
+
+# Copy Nginx config
+COPY /docker/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /usr/src/app/dist/BC-painters-hub /usr/share/nginx/html
