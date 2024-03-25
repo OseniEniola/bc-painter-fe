@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://api.bugierocsglobalservices.com/api/v1'
+  baseUrl: 'http://ec2-3-82-43-251.compute-1.amazonaws.com:3000/api/v1'
 };
