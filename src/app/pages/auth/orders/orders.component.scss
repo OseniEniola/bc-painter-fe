@@ -119,6 +119,9 @@
         }
         img {
           width: 20%;
+          @include screen-media-max(md){
+            width: 10%;
+          }
         }
       }
     }

@@ -107,6 +107,12 @@ header {
     height: 100%;
     font-family: 'Roboto';
     background-color: var(--primary);
+    @include screen-media-max($md - 82){
+      width: 10%;
+    }
+    @include screen-media-min-max($md - 83, $md){
+      width: 25%;
+    }
 
     nav {
       height: 100%;
@@ -163,12 +169,22 @@ header {
           cursor: pointer;
           gap: 0.4rem;
           color: white;
+          @include screen-media-max($md - 83){
+            padding: 0.7rem 25%;
+            span{
+              display: none;
+            }
+          }
 
           &.active,
           &:hover {
-            padding: 0.7rem 10% 0.7rem 12%;
+
             border-right: 3px solid var(--border-2);
             background-color: rgba(#fff, 0.13);
+
+            @include screen-media-max(md){
+              padding: 0.7rem 10% 0.7rem 25%;
+            }
           }
 
           &.sub-menu {
