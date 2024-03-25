@@ -1,11 +1,27 @@
+
+.empty-state {
+  width: 100%;
+  font-size: 1.4rem;
+  letter-spacing: 0.03rem;
+  font-family: 'Gilroy-Bold';
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 5%;
+}
 .section {
   &.table {
-
+    @include screen-media-max(md) {
+      margin-top: 6%;
+    }
     .table-container {
       overflow: hidden;
       border-radius: 0.3rem;
       box-shadow: 0 16px 43px rgba(0,0,0,.06);
-
+      @include screen-media-max(md) {
+        overflow-x: scroll;
+      }
       .table-hdr {
         display: flex;
         padding: 0.4rem 0.5rem;
@@ -19,8 +35,10 @@
       }
 
       table {
-
-        thead {
+        @include screen-media-max(md) {
+          width: -webkit-fill-available;
+        }
+          thead {
           border: none;
           padding: 0.3rem 1rem !important;
           background-color: rgba(0,0,0,.06);
@@ -33,6 +51,9 @@
               font-weight: 600;
               letter-spacing: 0.02rem;
               padding: 0.6rem 1rem;
+              @include screen-media-max(md) {
+                max-width: 5%;
+              }
             }
           }
         }
